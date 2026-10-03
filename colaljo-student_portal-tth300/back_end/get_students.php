@@ -1,0 +1,19 @@
+<?php
+
+include "db.php";
+
+$sql = "SELECT * FROM students ORDER BY id DESC";
+$result = $conn->query($sql);
+
+$students = [];
+
+while ($row = $result->fetch_assoc()) {
+    $students[] = $row;
+}
+
+header("Content-Type: application/json");
+echo json_encode($students);
+
+$conn->close();
+
+?>
